@@ -1,0 +1,70 @@
+/* .blogPageContainer{
+    margin-top: 80px;
+    text-align: center;
+}
+
+.blogPageContainer h1{
+    font-size: 50px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+} */
+
+   /* General body styling */
+   body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Styling for the blog page container */
+  .blogPageContainer {
+      margin: 0 auto;
+    margin-top: 80px;
+    width: 80%;
+    padding: 20px;
+    border-radius: 8px;
+  }
+
+  /* Heading styling */
+  .blogPageContainer h1 {
+    font-size: 36px;
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+  }
+
+  /* Unordered list styling */
+  .blogPageContainer ul {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  /* List item styling */
+  .blogPageContainer ul li {
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+    font-size: 18px;
+  }
+
+  /* Link styling for blog post titles */
+  .blogPageContainer ul li a {
+    text-decoration: none;
+    color: #007BFF;
+    font-weight: bold;
+  }
+
+  /* Hover effect for blog post links */
+  .blogPageContainer ul li a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+  }
+
+  /* Date styling */
+  .blogPageContainer ul li span {
+    font-size: 14px;
+    color: #777;
+  }

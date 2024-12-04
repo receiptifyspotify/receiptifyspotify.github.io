@@ -45,6 +45,8 @@ body {
 .mobile-ad {
   display: none;
 }
+
+/* writing style  */
 label {
   word-break: break-all;
 }
