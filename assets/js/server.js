@@ -323,7 +323,7 @@ const showReceipt = () => {
 // login with spotify
 // Spotify API variables
 var clientId = '9c8122aea24849d88527635210542f45'; // Replace with your actual Spotify Client ID
-var redirectUri = 'http://localhost:4000'; // Replace with your live URL when deploying
+var redirectUri = 'https://receiptifyspotify.github.io'; // Replace with your live URL when deploying
 var scopes = 'user-read-private user-read-email user-top-read playlist-modify-public';
 
 
