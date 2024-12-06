@@ -11,3 +11,4 @@ Spotify offers various Premium plans with different pricing options. Here are th
 **Premium Student:** This plan is exclusively for students and offers a discounted rate.   
 
 To get the most accurate and up-to-date pricing information, I recommend checking Spotify's official website or app. Prices may vary depending on your region and any ongoing promotions.
+
