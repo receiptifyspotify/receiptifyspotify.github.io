@@ -742,11 +742,12 @@ nav {
   height: auto;
 }
 nav > ul {
-  display: inline-block;
+/*   display: inline-block; */
   list-style-type: none;
   padding: 2vh 3vw;
   margin: 0vh;
-  float: right;
+/*   float: right; */
+  text-align:end;
 }
 nav > ul > li {
   border: 1px solid transparent;
