@@ -797,7 +797,6 @@ nav > ul > li > a {
   -webkit-transition-duration: 0.5s;
   -o-transition-duration: 0.5s;
   transition-duration: 0.5s;
-  background-color: white;
   z-index: 99;
 }
 .navColor > ul > li:hover {
