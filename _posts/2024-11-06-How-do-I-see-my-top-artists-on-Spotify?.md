@@ -24,3 +24,4 @@ Your top artists will be displayed under "Recently Played Artists."
 
 **MySpotiPie:** Another popular option, MySpotiPie offers a variety of visualizations, including a list of your top artists.
 By using these methods, you can easily discover the artists you've listened to the most and explore their music further.
+
