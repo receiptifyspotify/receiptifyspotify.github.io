@@ -6,6 +6,7 @@ Spotify is suitable for a wide range of ages. It's a versatile platform that cat
 
 **Parental Controls:** Spotify offers robust parental controls, allowing parents to manage their children's listening experiences.
 
+
 **Kid-Friendly Content:** The platform features a dedicated section for kids, offering age-appropriate music and podcasts.
 
 **For older audiences:**
