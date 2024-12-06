@@ -7,10 +7,6 @@ permalink: /blogs
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta
-      name="ahrefs-site-verification"
-      content="f9805fd529e993ad2b1929b09f27c0b69fbda9fad04acead603f2847527f3b52"
-    />
     <meta charset="UTF-8" />
     <meta
       name="viewport"
@@ -93,17 +89,12 @@ permalink: /blogs
       name="google-site-verification"
       content="0I5jWqQYG7ahDKO-xLIJWViQ8SPeE0SgnfbaXjFInkU"
     />
-    <link rel="stylesheet" href="/assets/css/blogs.css">
-
+    <link rel="stylesheet" href="/assets/css/blogs.css" />
   </head>
 
   <body>
-    <div
-      class="blogPageContainer"
-    >
-      <h1>
-        Blog Posts
-      </h1>
+    <div class="blogPageContainer">
+      <h1>Blog Posts</h1>
 
       <ul>
         {% for post in site.posts %}
@@ -115,6 +106,8 @@ permalink: /blogs
       </ul>
     </div>
     <script src="https://code.jquery.com/jquery-1.10.1.min.js"></script>
-    <script>$('#logout-btn').hide();</script>
+    <script>
+      $("#logout-btn").hide();
+    </script>
   </body>
 </html>
