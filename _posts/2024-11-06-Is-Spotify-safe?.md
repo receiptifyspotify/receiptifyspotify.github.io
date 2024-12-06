@@ -9,6 +9,7 @@ Account Security: Strong passwords and two-factor authentication can significant
 Third-Party Apps: Be cautious when using third-party apps that integrate with Spotify, as they may have varying levels of security.
 To maximize your safety on Spotify, consider these tips:
 
+
 Keep Your Software Updated: Regularly update your Spotify app and device software to benefit from the latest security patches.
 Use Strong, Unique Passwords: Avoid using weak or easily guessable passwords.
 Enable Two-Factor Authentication: This adds an extra layer of security to your account.
