@@ -23,11 +23,22 @@ body {
   margin-bottom: 20px;
 }
 
+<<<<<<< HEAD
 /* Unordered list styling */
 .blogPageContainer ul {
   list-style-type: none;
   padding: 0;
 }
+=======
+  /* Styling for the blog page container */
+  .blogPageContainer {
+      margin: 0 auto;
+    margin-top: 18px;
+    width: 80%;
+    padding: 20px;
+    border-radius: 8px;
+  }
+>>>>>>> 8557749cc2889c4f764d1c793c114c3926c577d0
 
 /* List item styling */
 .blogPageContainer ul li {
@@ -64,6 +75,7 @@ body {
   font-size: 32px;
 }
 
+<<<<<<< HEAD
 .postContainer h1,
 .postContainer h2,
 .postContainer h3,
@@ -78,4 +90,15 @@ body {
   line-height: 21px;
   text-align: justify;
   font-family: "Times New Roman", Times, serif;
+=======
+  /* Date styling */
+  .blogPageContainer ul li span {
+    font-size: 14px;
+    color: #777;
+  }
+
+.postContainer {
+  max-width: 850px;
+  margin: auto;
+>>>>>>> 8557749cc2889c4f764d1c793c114c3926c577d0
 }
