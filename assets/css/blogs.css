@@ -68,3 +68,8 @@
     font-size: 14px;
     color: #777;
   }
+
+.postContainer {
+  max-width: 850px;
+  margin: auto;
+}
