@@ -9,3 +9,4 @@ Billie Eilish's music defies easy categorization, blending elements of various g
 **Synth-Pop:** With its heavy use of synthesizers and electronic beats, synth-pop influences many of Eilish's songs.
 
 Ultimately, Billie Eilish's music is a captivating blend of these genres, creating a sound that is both familiar and groundbreaking. Her ability to experiment with different styles and push boundaries has solidified her position as one of the most influential artists of her generation. 
+
