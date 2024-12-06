@@ -20,6 +20,7 @@ Your top artists will be displayed under "Recently Played Artists."
 
 ## 2. Third-Party Apps and Websites:
 
-Stats for Spotify: This website provides detailed statistics about your listening habits, including your top artists.
-MySpotiPie: Another popular option, MySpotiPie offers a variety of visualizations, including a list of your top artists.
+**Stats for Spotify:** This website provides detailed statistics about your listening habits, including your top artists.
+
+**MySpotiPie:** Another popular option, MySpotiPie offers a variety of visualizations, including a list of your top artists.
 By using these methods, you can easily discover the artists you've listened to the most and explore their music further.
