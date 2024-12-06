@@ -15,3 +15,4 @@ While her earlier work was heavily influenced by country music, her recent album
 
 
 
+
