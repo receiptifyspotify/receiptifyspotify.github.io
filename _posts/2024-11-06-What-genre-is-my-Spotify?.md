@@ -9,6 +9,7 @@ Third-Party Apps: Tools like Stats for Spotify can give you a more detailed anal
 
 ##Analyzing Your Playlists:
 
+
 Look at the genres of the songs in your playlists to get a sense of your musical preferences.
 Spotify often categorizes playlists by genre, so you can see which genres you tend to listen to most.
 
