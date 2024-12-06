@@ -11,6 +11,7 @@ Third-Party Access: By using a third-party app, you're essentially entrusting yo
 Data Security: While Receiptify may have security measures in place, there's always a risk of data breaches or unauthorized access.
 How to Minimize Risks:
 
+
 Limit Access: Grant Receiptify access only when you intend to use it. Revoke access after generating your desired receipts.
 Check Privacy Policy: Review Receiptify's privacy policy to understand how your data is collected, used, and protected.
 Be Cautious with Sensitive Information: Avoid sharing any personal information beyond what is required for the app to function.
