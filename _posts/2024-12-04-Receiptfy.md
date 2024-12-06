@@ -16,6 +16,7 @@ Receiptfy is a digital receipt management platform designed to simplify the proc
    - Receiptfy offers cloud storage, which means you don’t have to worry about losing important receipts. Whether you need a receipt for a business lunch or a client expense, it's all stored securely and available at your fingertips.
 
 ### 3. **Tax-Friendly Reporting**
+
    - Managing tax documents is a breeze with Receiptfy. The platform allows users to easily generate reports of expenses for tax filing. Whether it's for quarterly taxes or annual reports, Receiptfy helps businesses stay compliant with ease.
 
 ### 4. **Multi-Device Synchronization**
