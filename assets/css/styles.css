@@ -159,13 +159,8 @@ p {
   max-width: 295px;
 }
 
-.footer {
-  /* margin-top: 70px; */
-}
 
-.footer p {
-  font-size: 1rem;
-}
+
 
 .apple {
   background-color: #f94c57;
@@ -736,17 +731,15 @@ input[type="radio" i] {
 }
 nav {
   width: 100%;
-  box-shadow: 10px 10px 29px 0px rgba(0, 0, 0, 0.07);
-  -webkit-box-shadow: 10px 10px 29px 0px rgba(0, 0, 0, 0.07);
-  -moz-box-shadow: 10px 10px 29px 0px rgba(0, 0, 0, 0.07);
   height: auto;
 }
 nav > ul {
-  display: inline-block;
+  /* display: inline-block; */
   list-style-type: none;
   padding: 2vh 3vw;
   margin: 0vh;
-  float: right;
+  /* float: right; */
+  text-align: end;
 }
 nav > ul > li {
   border: 1px solid transparent;
@@ -799,7 +792,6 @@ nav > ul > li > a {
   -webkit-transition-duration: 0.5s;
   -o-transition-duration: 0.5s;
   transition-duration: 0.5s;
-  background-color: white;
   z-index: 99;
 }
 .navColor > ul > li:hover {
@@ -1011,5 +1003,51 @@ nav > ul > li > a {
 @media (max-width: 330px) {
   .header-section {
     padding: 0 15px;
+  }
+}
+
+
+/* Footer Styling */
+.footer {
+  color: #333; /* Dark text for good contrast */
+  padding: 30px 10px; /* Padding around the footer */
+  text-align: center; /* Center the text */
+  /* border-top: 1px solid #ddd; Light border on top of the footer */
+  width: 100%;
+}
+
+/* Styling for the separator line */
+.seperator hr {
+  border: 0;
+  border-top: 1px solid #ddd; /* Light gray separator */
+  margin: 20px 0; /* Margin around the separator */
+}
+
+/* Styling for the footer info links */
+.footer a {
+  color: #0066cc; /* Blue color for links */
+  text-decoration: none; /* Remove underline */
+  transition: color 0.3s ease; /* Smooth transition effect */
+}
+
+.footer a:hover {
+  color: #ff6600; /* Orange color when hovering */
+}
+
+/* Footer info paragraphs styling */
+.footer .info {
+  font-size: 16px !important;
+  margin: 10px 0; /* Space between the info sections */
+}
+
+/* Responsive design for smaller screens */
+@media screen and (max-width: 768px) {
+  .footer {
+    padding: 20px; /* Reduce padding on smaller screens */
+    font-size: 12px; /* Slightly smaller text */
+  }
+
+  .footer a {
+    font-size: 13px; /* Make links slightly smaller on smaller screens */
   }
 }

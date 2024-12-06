@@ -1049,11 +1049,6 @@ let access_token = params.access_token,
   dev_token = params.dev_token,
   client = params.client,
   error = params.error;
-console.log(params)
-console.log('access t', access_token)
-console.log('dev', dev_token)
-console.log('client', client)
-console.log('error', error)
 
 if (error) {
   alert('There was an error during the authentication');

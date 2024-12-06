@@ -29,12 +29,12 @@ function hiddenClone(element) {
   return clone;
 }
 
-let receiptSource = document.getElementById("receipt-template").innerHTML,
-  userProfileTemplate = Handlebars.compile(receiptSource),
-  userProfilePlaceholder = document.getElementById("receipt");
+
+
 
 function retrieveTracks(user, timeRangeSlug, domNumber, domPeriod) {
   const userUrl = "https://ws.audioscrobbler.com/2.0/";
+
   $.ajax({
     url: userUrl,
     data: {
@@ -46,6 +46,7 @@ function retrieveTracks(user, timeRangeSlug, domNumber, domPeriod) {
       format: "json",
     },
     success: function (response) {
+      // Show the receipt if it's hidden
       if ($("#receipt").hasClass("hidden")) {
         $("#receipt").removeClass("hidden");
       }
@@ -55,24 +56,29 @@ function retrieveTracks(user, timeRangeSlug, domNumber, domPeriod) {
       let totalTime = 0;
       const date = today.toLocaleDateString("en-US", dateOptions).toUpperCase();
 
-      for (var i = 0; i < responseItems.length; i++) {
-        responseItems[i].name = responseItems[i].name.toUpperCase();
-        responseItems[i].artist.name =
-          responseItems[i].artist.name.toUpperCase();
-        let playsInt = parseInt(responseItems[i].playcount, 10);
-        let durationInt = parseInt(responseItems[i].duration, 10);
+      // Process each track item
+      responseItems.forEach(function (track) {
+        track.name = track.name.toUpperCase();
+        track.artist.name = track.artist.name.toUpperCase();
+        
+        const playsInt = parseInt(track.playcount, 10);
+        const durationInt = parseInt(track.duration, 10);
+        
         totalPlays += playsInt;
         totalTime += playsInt * durationInt;
-        let minutes = Math.floor(durationInt / 60);
-        let seconds = (durationInt % 60).toFixed(0);
-        responseItems[i].duration =
-          minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
-      }
+
+        const minutes = Math.floor(durationInt / 60);
+        const seconds = (durationInt % 60).toFixed(0);
+        track.duration = minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+      });
+
+      // Calculate total time in days, hours, minutes, and seconds
       let days = Math.floor(totalTime / 86400);
       let hours = Math.floor((totalTime - days * 86400) / 3600);
-      minutes = Math.floor((totalTime - days * 86400 - hours * 3600) / 60);
-      seconds = totalTime - days * 86400 - hours * 3600 - minutes * 60;
-      totalTime =
+      let minutes = Math.floor((totalTime - days * 86400 - hours * 3600) / 60);
+      let seconds = totalTime - days * 86400 - hours * 3600 - minutes * 60;
+
+      totalTime = 
         (days > 0 ? days + ":" : "") +
         (days > 0 && hours < 10 ? "0" : "") +
         hours +
@@ -82,37 +88,81 @@ function retrieveTracks(user, timeRangeSlug, domNumber, domPeriod) {
         ":" +
         (seconds < 10 ? "0" : "") +
         seconds;
-      userProfilePlaceholder.innerHTML = userProfileTemplate({
-        tracks: responseItems,
-        totalPlays: totalPlays,
-        totalTime: totalTime,
-        time: date,
-        num: domNumber,
-        name: user.toUpperCase(),
-        period: domPeriod,
-      });
-      document
-        .getElementById("download")
-        .addEventListener("click", function () {
-          var offScreen = document.querySelector(".receiptContainer");
-          window.scrollTo(0, 0);
-          var clone = hiddenClone(offScreen);
-          // Use clone with htm2canvas and delete clone
-          html2canvas(clone, { scrollY: -window.scrollY }).then((canvas) => {
-            var dataURL = canvas.toDataURL("image/png", 1.0);
-            document.body.removeChild(clone);
-            var link = document.createElement("a");
-            console.log(dataURL);
-            link.href = dataURL;
-            link.download = `${timeRangeSlug}.png`;
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-          });
+
+      // Manually build the HTML using jQuery
+      const receiptHtml = `
+        <div class='receiptContainer my-5'>
+          <h2 class='logo'>RECEIPTIFY</h2>
+          <p class='period'>${domPeriod}</p>
+          <p class='date'>ORDER #000${domNumber} FOR ${user.toUpperCase()}</p>
+          <p class='date'>${date}</p>
+          <table class='tracks'>
+            <thead>
+              <tr>
+                <td class='begin'>QTY</td>
+                <td>ITEM</td>
+                <td class='length'>AMT</td>
+              </tr>
+            </thead>
+            <tbody>
+              ${responseItems.map(function(track) {
+                return `
+                  <tr>
+                    <td class='begin'>${track.playcount}</td>
+                    <td class='name'>${track.name} - ${track.artist.name}</td>
+                    <td class='length'>${track.duration}</td>
+                  </tr>
+                `;
+              }).join('')}
+              <tr class='total-counts'>
+                <td class='begin' colspan='2'>ITEM COUNT:</td>
+                <td class='length'>${totalPlays}</td>
+              </tr>
+              <tr class='total-counts-end'>
+                <td class='begin' colspan='2'>TOTAL:</td>
+                <td class='length'>${totalTime}</td>
+              </tr>
+            </tbody>
+          </table>
+          <p class='date'>CARD #: **** **** **** 2023</p>
+          <p class='date'>AUTH CODE: 123421</p>
+          <p class='date'>CARDHOLDER: ${user.toUpperCase()}</p>
+          <div class='thanks'>
+            <p>THANK YOU FOR VISITING!</p>
+            <img src='/assets/img/barcode.png' />
+            <p class='website mt-2 '>receiptifyspotify.github.io</p>
+          </div>
+        </div>
+        <button class='btn time-btn' id='download'>Save Image</button>
+      `;
+
+      // Append the HTML to the receipt div
+      $("#receipt").html(receiptHtml);
+
+      // Set up the "Download" button to capture the receipt as an image
+      $("#download").on("click", function () {
+        var offScreen = $(".receiptContainer")[0];
+        window.scrollTo(0, 0);
+        var clone = hiddenClone(offScreen);  // Make a clone for capturing
+        html2canvas(clone, { scrollY: -window.scrollY }).then(function (canvas) {
+          var dataURL = canvas.toDataURL("image/png", 1.0);
+          // $("body").removeChild(clone);  // Clean up after clone
+
+          var link = $("<a></a>");
+          link.attr("href", dataURL)
+              .attr("download", timeRangeSlug + ".png")
+              .appendTo("body")[0]
+              .click();
+          link.remove();
         });
+      });
     },
+    error: function (xhr, status, error) {
+      console.error("Error fetching top tracks:", error);
+    }
   });
 }
+
 
 const user = document.getElementById("user-search");
 user.addEventListener("submit", async function (e) {

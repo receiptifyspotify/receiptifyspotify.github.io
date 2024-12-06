@@ -21,9 +21,7 @@ permalink: /lastfm
     <link rel="stylesheet" href="/assets/css/styles.css" />
   </head>
   <body onload="loadHome('lastfm')">
-
     <div class="page-container">
-     
       <div class="content-container">
         <div class="container">
           <div id="loggedin">
@@ -58,86 +56,86 @@ permalink: /lastfm
             <div id="receipt"></div>
           </div>
           <script id="receipt-template" type="text/x-handlebars-template">
-            <div class='receiptContainer'>
-              <h2 class='logo'>
+            <div class="receiptContainer">
+              <h2 class="logo">
                 RECEIPTIFY
               </h2>
-              <p class='period'>
+              <p class="period">
                 {{period}}
               </p>
-              <p class='date'>
+              <p class="date">
                 ORDER #000{{num}}
                 FOR
                 {{name}}
               </p>
-              <p class='date'>
+              <p class="date">
                 {{time}}
               </p>
-              <table class='tracks'>
+              <table class="tracks">
                 <thead>
-                  <td class='begin'>
+                  <td class="begin">
                     QTY
                   </td>
                   <td>
                     ITEM
                   </td>
-                  <td class='length'>
+                  <td class="length">
                     AMT
                   </td>
                 </thead>
                 {{#each tracks}}
                   <tr>
-                    <td class='begin'>
+                    <td class="begin">
                       {{this.playcount}}
                     </td>
-                    <td class='name'>
+                    <td class="name">
                       {{this.name}}
                       -
                       {{this.artist.name}}
                     </td>
-                    <td class='length'>
+                    <td class="length">
                       {{this.duration}}
                     </td>
                   </tr>
                 {{/each}}
-                <tr class='total-counts'>
-                  <td class='begin' colspan='2'>
+                <tr class="total-counts">
+                  <td class="begin" colspan="2">
                     ITEM COUNT:
                   </td>
-                  <td class='length'>
+                  <td class="length">
                     {{totalPlays}}
                   </td>
                 </tr>
-                <tr class='total-counts-end'>
-                  <td class='begin' colspan='2'>
+                <tr class="total-counts-end">
+                  <td class="begin" colspan="2">
                     TOTAL:
                   </td>
-                  <td class='length'>
+                  <td class="length">
                     {{totalTime}}
                   </td>
                 </tr>
               </table>
-              <p class='date'>
+              <p class="date">
                 CARD #: **** **** **** 2023
               </p>
-              <p class='date'>
+              <p class="date">
                 AUTH CODE: 123421
               </p>
-              <p class='date'>
+              <p class="date">
                 CARDHOLDER:
                 {{name}}
               </p>
-              <div class='thanks'>
+              <div class="thanks">
                 <p>
                   THANK YOU FOR VISITING!
                 </p>
-                <img src='/assets/img/barcode.png' />
-                <p class='website'>
-                  receiptifyspotify.herokuapp.com
+                <img src="/assets/img/barcode.png" />
+                <p class="website">
+                  receiptifyspotify.github.io
                 </p>
               </div>
             </div>
-            <button class='btn time-btn' id='download'>
+            <button class="btn time-btn" id="download">
               Download Image
             </button>
           </script>
@@ -151,11 +149,11 @@ permalink: /lastfm
         <script src="/assets/js/lastfm.js"></script>
         <script>
           document
-            .querySelector('.hamburger-menu')
-            .addEventListener('click', function () {
-              document.querySelector('.navColor ul').classList.toggle('show');
+            .querySelector(".hamburger-menu")
+            .addEventListener("click", function () {
+              document.querySelector(".navColor ul").classList.toggle("show");
             });
-          $('#logout-btn').hide();
+          $("#logout-btn").hide();
         </script>
       </div>
     </div>

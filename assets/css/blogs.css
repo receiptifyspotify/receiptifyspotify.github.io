@@ -1,70 +1,81 @@
-/* .blogPageContainer{
-    margin-top: 80px;
-    text-align: center;
+/* General body styling */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
 }
 
-.blogPageContainer h1{
-    font-size: 50px;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 10px;
-} */
+/* Styling for the blog page container */
+.blogPageContainer {
+  margin: 0 auto;
+  margin-top: 18px;
+  width: 80%;
+  padding: 20px;
+  border-radius: 8px;
+}
 
-   /* General body styling */
-   body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
-  }
+/* Heading styling */
+.blogPageContainer h1 {
+  font-size: 36px;
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+}
 
-  /* Styling for the blog page container */
-  .blogPageContainer {
-      margin: 0 auto;
-    margin-top: 80px;
-    width: 80%;
-    padding: 20px;
-    border-radius: 8px;
-  }
+/* Unordered list styling */
+.blogPageContainer ul {
+  list-style-type: none;
+  padding: 0;
+}
 
-  /* Heading styling */
-  .blogPageContainer h1 {
-    font-size: 36px;
-    text-align: center;
-    color: #333;
-    margin-bottom: 20px;
-  }
+/* List item styling */
+.blogPageContainer ul li {
+  padding: 10px 0;
+  border-bottom: 1px solid #ddd;
+  font-size: 18px;
+}
 
-  /* Unordered list styling */
-  .blogPageContainer ul {
-    list-style-type: none;
-    padding: 0;
-  }
+/* Link styling for blog post titles */
+.blogPageContainer ul li a {
+  text-decoration: none;
+  color: #007bff;
+  font-weight: bold;
+}
 
-  /* List item styling */
-  .blogPageContainer ul li {
-    padding: 10px 0;
-    border-bottom: 1px solid #ddd;
-    font-size: 18px;
-  }
+/* Hover effect for blog post links */
+.blogPageContainer ul li a:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
 
-  /* Link styling for blog post titles */
-  .blogPageContainer ul li a {
-    text-decoration: none;
-    color: #007BFF;
-    font-weight: bold;
-  }
+/* Date styling */
+.blogPageContainer ul li span {
+  font-size: 14px;
+  color: #777;
+}
 
-  /* Hover effect for blog post links */
-  .blogPageContainer ul li a:hover {
-    color: #0056b3;
-    text-decoration: underline;
-  }
+.postContainer {
+  max-width: 850px;
+  margin: auto;
+}
+.postContainer h1 {
+  text-align: start;
+  font-size: 32px;
+}
 
-  /* Date styling */
-  .blogPageContainer ul li span {
-    font-size: 14px;
-    color: #777;
-  }
+.postContainer h1,
+.postContainer h2,
+.postContainer h3,
+.postContainer h4,
+.postContainer h6,
+.postContainer p {
+  margin: 12px 0px;
+}
+
+.postContainer p {
+  font-size: 18px;
+  line-height: 21px;
+  text-align: justify;
+  font-family: "Times New Roman", Times, serif;
+}
