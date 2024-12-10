@@ -322,8 +322,8 @@ const showReceipt = () => {
 
 // login with spotify
 // Spotify API variables
-var clientId = '9c8122aea24849d88527635210542f45'; // Replace with your actual Spotify Client ID
-var redirectUri = 'https://receiptifyspotify.github.io'; // Replace with your live URL when deploying
+var clientId = '241ba59c2fca4bef9c97057800e6e009'; // Replace with your actual Spotify Client ID
+var redirectUri = 'http://localhost:4000/'; // Replace with your live URL when deploying
 var scopes = 'user-read-private user-read-email user-top-read playlist-modify-public';
 
 
@@ -687,16 +687,21 @@ const displayReceipt = (response, stats) => {
   const responseItems = getResponseItems(response, stats);
   let total = 0;
   const date = TODAY.toLocaleDateString('en-US', DATE_OPTIONS).toUpperCase();
+  
   const tracksFormatted = responseItems.map((item, i) => {
     total += totalIncrement(item);
+  
+    // Ensure you use 'duration_ms' instead of 'duration'
     return {
       id: (i + 1 < 10 ? '0' : '') + (i + 1),
       url: item.external_urls?.spotify || "",
       name: itemFns.name(item),
       artists: itemFns.artists(item),
-      duration_ms: itemFns.duration(item),
+      duration_ms: itemFns.duration_ms(item), // Corrected key
     };
   });
+
+
 
   const totalFormatted =
     type === 'tracks' || type === 'show-search' ? getMinSeconds(total) : total.toFixed(2);
@@ -718,19 +723,19 @@ const displayReceipt = (response, stats) => {
       </thead>
       <tbody>
         ${tracksFormatted
-          .map(
-            (track) => `
+      .map(
+        (track) => `
           <tr>
             <td class='begin'>${track.id}</td>
             <td class='name'>
               ${track.url
-                ? `<a href='${track.url}' target='_blank'>${track.name} ${track.artists}</a>`
-                : `<p>${track.name} ${track.artists}</p>`}
+            ? `<a href='${track.url}' target='_blank'>${track.name} ${track.artists}</a>`
+            : `<p>${track.name} ${track.artists}</p>`}
             </td>
             <td class='length'>${track.duration_ms}</td>
           </tr>`
-          )
-          .join('')}
+      )
+      .join('')}
         <tr class='total-counts'>
           <td colspan='2'>ITEM COUNT:</td>
           <td>${tracksFormatted.length}</td>
@@ -1042,7 +1047,7 @@ function retrieveItemsApple(hist) {
     .addEventListener('click', () => downloadImg('heavy_rotation'));
 }
 
-logoutBtn().addEventListener('click',()=>logout())
+logoutBtn().addEventListener('click', () => logout())
 
 let params = getHashParams();
 let access_token = params.access_token,
