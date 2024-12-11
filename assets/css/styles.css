@@ -234,7 +234,7 @@ p {
 }
 #options,
 #num-options,
-#appleoption {
+#appleoption,#mode-options {
   margin: 0px auto;
   margin-top: 1vh;
   display: flex;
@@ -515,6 +515,7 @@ td {
 .explanation-header {
   font-family: Inter, "Helvetica Neue", sans-serif;
   line-height: 1.2;
+  text-align: start;
 }
 #track-edit {
   margin-top: 30px;
@@ -734,21 +735,12 @@ nav {
   height: auto;
 }
 nav > ul {
-<<<<<<< HEAD
   /* display: inline-block; */
   list-style-type: none;
   padding: 2vh 3vw;
   margin: 0vh;
   /* float: right; */
   text-align: end;
-=======
-/*   display: inline-block; */
-  list-style-type: none;
-  padding: 2vh 3vw;
-  margin: 0vh;
-/*   float: right; */
-  text-align:end;
->>>>>>> 8557749cc2889c4f764d1c793c114c3926c577d0
 }
 nav > ul > li {
   border: 1px solid transparent;

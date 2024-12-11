@@ -54,6 +54,8 @@ const EVENT_LISTENERS = [
   'fifty-tracks',
   'classic',
   'international',
+  'normal_mode',
+  'brat_mode'
 ];
 const MONTH_NAMES = [
   'January',
@@ -323,7 +325,8 @@ const showReceipt = () => {
 // login with spotify
 // Spotify API variables
 var clientId = '241ba59c2fca4bef9c97057800e6e009'; // Replace with your actual Spotify Client ID
-var redirectUri = 'https://receiptifyspotify.github.io/'; // Replace with your live URL when deploying
+var redirectUri = 'https://receiptifyspotify.github.io/'; 
+// var redirectUri = 'http://localhost:4000/';
 var scopes = 'user-read-private user-read-email user-top-read playlist-modify-public';
 
 
@@ -352,6 +355,13 @@ const getFont = () => {
   );
 };
 
+const getMode = () => {
+  return (
+    document.querySelector('input[name="mode-select"]:checked')?.value ??
+    'normal'
+  );
+};
+
 const getType = () => {
   return document.getElementById('type-select-dropdown')?.value;
 };
@@ -369,7 +379,8 @@ const getNum = () => {
   );
 };
 
-const offScreen = () => document.querySelector('.receiptContainer');
+const offScreen = () => document.querySelector('.receiptContainer, .bratContainer');
+
 
 const initSearch = () => {
   const type = getType();
@@ -640,6 +651,7 @@ const displayReceipt = (response, stats) => {
   const type = getType();
   const timeRange = getPeriod();
   const font = getFont();
+  const mode = getMode();
   const TODAY = new Date();
   const DATE_OPTIONS = { year: 'numeric', month: 'short', day: 'numeric' };
   const TIME_RANGE_OPTIONS = {
@@ -650,9 +662,12 @@ const displayReceipt = (response, stats) => {
 
   const fns = TYPE_FUNCTIONS[type];
   const { getResponseItems, itemFns, totalIncrement } = fns;
+  console.log(mode)
+
 
   // Handle Track Edit Section
   if (type === 'build-receipt') {
+    // alert("ha custom hai")
     $('#track-edit').show();
     const trackHTML = customReceipt
       .map((item, i) => {
@@ -687,10 +702,10 @@ const displayReceipt = (response, stats) => {
   const responseItems = getResponseItems(response, stats);
   let total = 0;
   const date = TODAY.toLocaleDateString('en-US', DATE_OPTIONS).toUpperCase();
-  
+
   const tracksFormatted = responseItems.map((item, i) => {
     total += totalIncrement(item);
-  
+
     // Ensure you use 'duration_ms' instead of 'duration'
     return {
       id: (i + 1 < 10 ? '0' : '') + (i + 1),
@@ -762,7 +777,61 @@ const displayReceipt = (response, stats) => {
     <button class="time-btn" id="save-playlist">Save as Playlist</button>
   </div>`;
 
+  let brat = `
+  
+   <div style="filter: blur(1.2px)" class="bratContainer">
+            <div>
+            <p class="date">
+              RANJEETSOCIALBKM XCX
+            </p>
+            <p class="period">
+              LAST MONTH
+            </p></div>
+            <div class="brat-tracks">
+              
+                ${tracksFormatted
+      .map(
+        (track) => `
+                       <span class="name">
+                        ${track.id}
+                        <a style="color: black; word-break: break-word" href='${track.url}' target='_blank'>${track.name} ${track.artists}</a>
+                        </span>`
+      )
+      .join('')}
+                  
+                    
+              
+            </div>
+            <div class="thanks">
+              <p class="website">
+                receiptify.github.io
+              </p>
+              <img class="spotify-logo" id="spotify-logo" src="assets/img/Spotify_Logo_RGB_Black.png">
+            </div>
+            
+          </div>
+          <div class="under">
+    <button class="time-btn" id="download">Download Image</button>
+    <button class="time-btn" id="new-tab">View in New Tab</button>
+    <button class="time-btn" id="save-playlist">Save as Playlist</button>
+  </div>
+  `
 
+
+  if (mode === 'brat_edition') {
+    $('#receipt').html(brat);
+    // Event handlers
+    $('#download').on('click', downloadImg);
+    $('#new-tab').on('click', newTab);
+    $('#save-playlist')
+      .toggle(type === 'tracks')
+      .on('click', () => saveAsPlaylist(response));
+
+
+
+    return;
+
+  }
   // Inject the receipt into the DOM
   $('#receipt').html(receiptHTML);
 
