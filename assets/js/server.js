@@ -767,7 +767,7 @@ const displayReceipt = (response, stats) => {
     <div class='thanks'>
       <p>THANK YOU FOR VISITING!</p>
       <img src='/assets/img/barcode.png' />
-      <p class='website'>receiptify.github.io</p>
+      <p class='website'>receiptifyspotify.github.io</p>
       <img src='/assets/img/Spotify_Logo_RGB_Black.png' />
     </div>
   </div>
@@ -804,7 +804,7 @@ const displayReceipt = (response, stats) => {
             </div>
             <div class="thanks">
               <p class="website">
-                receiptify.github.io
+                receiptifyspotify.github.io
               </p>
               <img class="spotify-logo" id="spotify-logo" src="assets/img/Spotify_Logo_RGB_Black.png">
             </div>
