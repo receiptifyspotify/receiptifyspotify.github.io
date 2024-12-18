@@ -1184,11 +1184,11 @@ if (error) {
     .addEventListener('change', retrieveItems);
 }
 
-document
-  .querySelector('.hamburger-menu')
-  .addEventListener('click', function () {
-    document.querySelector('.navColor ul').classList.toggle('show');
-  });
+// document
+//   .querySelector('.hamburger-menu')
+//   .addEventListener('click', function () {
+//     document.querySelector('.navColor ul').classList.toggle('show');
+//   });
 $('#logout-btn').hide();
 
 

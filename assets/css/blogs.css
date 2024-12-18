@@ -58,6 +58,7 @@ body {
 .postContainer {
   max-width: 850px;
   margin: auto;
+  padding: 20px;
 }
 .postContainer h1 {
   text-align: start;
