@@ -1,0 +1,138 @@
+---
+layout: page
+title: Spotify Playlist Name Generator
+permalink: /spotify-playlist-name-generator/
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Spotify Playlist Name Generator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: #1db954;
+      margin: 0;
+      padding: 20px;
+    }
+    h1 {
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 1em;
+      background-color: #1db954;
+      color: #ffffff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    button:hover {
+      background-color: #1aa34a;
+    }
+    #playlist-list {
+      margin-top: 20px;
+      width: 100%;
+      max-width: 500px;
+      list-style-type: none;
+      padding: 0;
+    }
+    #playlist-list li {
+      background-color: #282828;
+      color: #ffffff;
+      padding: 10px;
+      margin: 5px 0;
+      border-radius: 5px;
+    }
+    #copy-message {
+      color: #1db954;
+      font-size: 1em;
+      margin-top: 10px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>Spotify Playlist Name Generator</h1>
+  <button onclick="generatePlaylistName()">Generate Playlist Name</button>
+
+  <!-- Container for Generated Playlist Names -->
+  <ul id="playlist-list"></ul>
+
+  <!-- Button to copy all playlist names -->
+  <button onclick="copyAllPlaylistNames()">Copy All Playlist Names</button>
+
+  <!-- Temporary message area for copy confirmation -->
+  <div id="copy-message">All playlist names copied to clipboard!</div>
+
+  <script src="https://code.jquery.com/jquery-1.10.1.min.js"></script>
+  <script>
+    const adjectives = [
+      "Chill", "Happy", "Epic", "Sad", "Mellow", "Groovy", "Vibrant",
+      "Dreamy", "Energizing", "Peaceful", "Retro", "Mystic", "Electric", "Golden", "Lazy", "Lofi"
+    ];
+
+    const themes = [
+      "Vibes", "Beats", "Mood", "Hits", "Jams", "Anthems", "Grooves",
+      "Tunes", "Mix", "Throwbacks", "Essentials", "Waves", "Soundtrack"
+    ];
+
+    const genres = [
+      "Pop", "Rock", "Hip-Hop", "Jazz", "EDM", "Classical", "Indie",
+      "Soul", "Reggae", "Country", "Blues", "R&B", "Folk"
+    ];
+
+    function generatePlaylistName() {
+      const randomAdjective = adjectives[Math.floor(Math.random() * adjectives.length)];
+      const randomTheme = themes[Math.floor(Math.random() * themes.length)];
+      const randomGenre = genres[Math.floor(Math.random() * genres.length)];
+
+      const formats = [
+        `${randomAdjective} ${randomTheme}`,
+        `${randomAdjective} ${randomGenre} ${randomTheme}`,
+        `${randomGenre} ${randomTheme}`,
+        `${randomAdjective} ${randomGenre} Mix`
+      ];
+
+      const randomName = formats[Math.floor(Math.random() * formats.length)];
+
+      // Create a new list item and add it to the top of the playlist list
+      const playlistList = document.getElementById("playlist-list");
+      const newListItem = document.createElement("li");
+      newListItem.innerText = randomName;
+      playlistList.insertBefore(newListItem, playlistList.firstChild);
+    }
+
+    function copyAllPlaylistNames() {
+      const playlistList = document.getElementById("playlist-list");
+      let allNames = "";
+
+      // Loop through all list items and concatenate their text
+      for (let item of playlistList.children) {
+        allNames += item.innerText + "\n";
+      }
+
+      // Copy the concatenated names to clipboard
+      navigator.clipboard.writeText(allNames).then(() => {
+        // Show the temporary copy confirmation message
+        const copyMessage = document.getElementById("copy-message");
+        copyMessage.style.display = "block";
+
+        // Hide the message after 2 seconds
+        setTimeout(() => {
+          copyMessage.style.display = "none";
+        }, 2000);
+      }).catch(err => {
+        console.error("Error copying text: ", err);
+      });
+    }
+  </script>
+</body>
+</html>

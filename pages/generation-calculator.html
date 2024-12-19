@@ -1,0 +1,192 @@
+---
+layout: page
+title: Generation Calculator
+permalink: /generation-calculator/
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generation Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+        }
+        h1 {
+            color: #333;
+        }
+        .slider-container {
+            margin: 20px 0;
+        }
+        .slider {
+            -webkit-appearance: none;
+            width: 100%;
+            max-width: 600px;
+            height: 15px;
+            border-radius: 5px;
+            background: linear-gradient(90deg, #FF5733, #FFBD33);
+            outline: none;
+            opacity: 0.9;
+            transition: opacity 0.2s;
+        }
+        .slider:hover {
+            opacity: 1;
+        }
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background: #4CAF50;
+            cursor: pointer;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+        }
+        .slider::-moz-range-thumb {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background: #4CAF50;
+            cursor: pointer;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+        }
+        .output {
+            font-size: 20px;
+            margin-top: 10px;
+            color: #333;
+        }
+        .generation {
+            font-weight: bold;
+            font-size: 24px;
+            color: #333;
+        }
+        .birthYearButton {
+            font-weight: bold;
+            font-size: 36px;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            background-color: #FF5733;
+        }
+        .birthYearButton:hover {
+            background-color: #C0392B;
+        }
+        .description {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #555;
+            max-width: 600px;
+            margin: 20px auto;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Generation Calculator</h1>
+    <p>Move the slider to find your generation.</p>
+
+    <div class="slider-container">
+        <label for="birthYearSlider">Birth Year:</label>
+        <input type="range" id="birthYearSlider" class="slider" min="1900" max="2024" value="1990">
+        <div class="output">
+            <button id="birthYearDisplay" class="birthYearButton">1990</button>
+        </div>
+    </div>
+
+    <div class="output">
+        <p>Your Generation: <span id="generationDisplay" class="generation">Millennials</span></p>
+    </div>
+
+    <div class="description" id="generationDescription">
+        <p>Millennials are often characterized by their familiarity with digital technology and social media.</p>
+    </div>
+</div>
+
+<script>
+    const slider = document.getElementById('birthYearSlider');
+    const birthYearDisplay = document.getElementById('birthYearDisplay');
+    const generationDisplay = document.getElementById('generationDisplay');
+    const generationDescription = document.getElementById('generationDescription');
+
+    // Function to determine the generation and its description based on birth year
+    function getGeneration(birthYear) {
+        if (birthYear <= 1945) {
+            return {
+                name: "Silent Generation",
+                description: "The Silent Generation grew up during the Great Depression and World War II. They are known for their strong work ethic and traditional values."
+            };
+        } else if (birthYear <= 1964) {
+            return {
+                name: "Baby Boomers",
+                description: "Baby Boomers were born during the post-World War II baby boom. They are often associated with a strong sense of social activism and a commitment to social change."
+            };
+        } else if (birthYear <= 1980) {
+            return {
+                name: "Generation X",
+                description: "Generation X is known for its independence and resourcefulness. They experienced the rise of personal computing and are often viewed as the 'middle child' of generations."
+            };
+        } else if (birthYear <= 1996) {
+            return {
+                name: "Millennials",
+                description: "Millennials are often characterized by their familiarity with digital technology and social media. They value experiences over possessions and are known for their activism."
+            };
+        } else if (birthYear <= 2012) {
+            return {
+                name: "Generation Z",
+                description: "Generation Z is the first generation to grow up with the internet and smartphones. They are known for their progressive views and commitment to social justice."
+            };
+        } else {
+            return {
+                name: "Generation Alpha",
+                description: "Generation Alpha is the newest generation, born into a world dominated by technology. They are expected to be the most educated and technologically savvy."
+            };
+        }
+    }
+
+    // Function to update the slider's gradient dynamically
+    function updateSliderColor(year) {
+        const hueStart = 30; // Start color hue
+        const hueEnd = 330; // End color hue
+        const hue = hueStart + ((year - 1900) / 124) * (hueEnd - hueStart);
+        slider.style.background = `linear-gradient(90deg, hsl(${hue}, 100%, 50%), hsl(${(hue + 30) % 360}, 100%, 50%))`;
+    }
+
+    // Event listener for slider changes
+    slider.addEventListener('input', function () {
+        const birthYear = parseInt(slider.value, 10);
+        birthYearDisplay.textContent = birthYear;
+
+        const generationInfo = getGeneration(birthYear);
+        generationDisplay.textContent = generationInfo.name;
+        generationDescription.innerHTML = `<p>${generationInfo.description}</p>`;
+
+        updateSliderColor(birthYear);
+    });
+
+    // Initialize the display with default slider value
+    const initialYear = parseInt(slider.value, 10);
+    birthYearDisplay.textContent = initialYear;
+
+    const initialGenerationInfo = getGeneration(initialYear);
+    generationDisplay.textContent = initialGenerationInfo.name;
+    generationDescription.innerHTML = `<p>${initialGenerationInfo.description}</p>`;
+
+    updateSliderColor(initialYear);
+</script>
+
+</body>
+</html>
