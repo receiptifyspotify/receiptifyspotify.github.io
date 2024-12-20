@@ -1,0 +1,157 @@
+---
+layout: page
+title: Band Name Generator
+permalink: /band-name-generator/
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { font-family: Arial, sans-serif; background-color: #f5f5f5; display: flex; flex-direction: column; align-items: center; margin-top: 50px; }
+    h1 { color: #333; font-size: 2em; }
+    #band-names { font-size: 1.5em; font-weight: bold; margin: 20px; color: #4CAF50; white-space: pre-line; }
+    .button-container { display: flex; flex-direction: column; gap: 10px; align-items: center; margin-top: 20px; width: 100%; max-width: 600px; }
+    .button-container > div { display: flex; justify-content: space-between; width: 100%; }
+    button { padding: 10px 20px; font-size: 1.2em; cursor: pointer; border: none; background-color: #4CAF50; color: white; border-radius: 5px; }
+    button:hover { background-color: #45a049; }
+    input, select { padding: 10px 20px; font-size: 1em; margin: 10px 0; border-radius: 5px; border: 1px solid #ccc; }
+    .output-container { margin-top: 20px; text-align: center; }
+  </style>
+</head>
+<body>
+
+  <div class="button-container">
+    <div>
+      <div>
+        <label for="name-type">Select Band Name Style:</label>
+        <select id="name-type">
+          <option value="adjective-noun">Adjective + Noun</option>
+          <option value="two-words">Two Random Words</option>
+          <option value="one-word">One Word</option>
+        </select>
+      </div>
+      <div>
+        <label for="genre">Genre:</label>
+        <select id="genre">
+          <option value="rock">Rock</option>
+          <option value="pop">Pop</option>
+          <option value="metal">Metal</option>
+          <option value="indie">Indie</option>
+          <option value="electronic">Electronic</option>
+          <option value="punk">Punk</option>
+          <option value="hip-hop">Hip Hop</option>
+          <option value="jazz">Jazz</option>
+          <option value="classical">Classical</option>
+          <option value="blues">Blues</option>
+          <option value="reggae">Reggae</option>
+          <option value="funk">Funk</option>
+          <option value="soul">Soul</option>
+          <option value="alternative">Alternative</option>
+          <option value="country">Country</option>
+          <option value="rnb">R&B</option>
+          <option value="grunge">Grunge</option>
+          <option value="dance">Dance</option>
+          <option value="experimental">Experimental</option>
+        </select>
+      </div>
+    </div>
+
+    <label for="quantity">Number of Names:</label>
+    <input type="number" id="quantity" min="1" value="30" />
+    
+    <button id="generate-btn" onclick="generateBandNames()">Generate Band Names</button>
+    <button id="copy-btn" onclick="copyBandNames()">Copy to Clipboard</button>
+  </div>
+
+  <div class="output-container">
+    <div id="band-names">Choose an option and click "Generate" to create a band name!</div>
+    <div class="load-restart-buttons">
+      <button id="load-more-btn" onclick="loadMoreNames()">Load More</button>
+      <button id="restart-btn" onclick="restartGeneration()">Restart</button>
+    </div>
+  </div>
+
+  <script>
+    const adjectives = ["Electric", "Funky", "Mystic", "Loud", "Wild", "Epic", "Dark", "Bright", "Silent", "Cosmic", "Raging", "Angry", "Twisted", "Bold"];
+    const nouns = ["Wolves", "Dragons", "Echoes", "Shadows", "Riders", "Rebels", "Sparks", "Titans", "Dreams", "Storm", "Ravens", "Phoenix", "Vultures", "Thunder"];
+    const singleWords = ["Starlight", "Inferno", "Vortex", "Neon", "Phantom", "Aurora", "Blaze", "Cascade", "Horizon", "Zenith", "Astral", "Nebula", "Vanguard", "Eclipse"];
+    const randomWords = ["Neon", "Raven", "Skyline", "Viper", "Nova", "Echo", "Grave", "Odyssey", "Cosmos", "Wreck", "Blaze", "Moonlight", "Inferno", "Edge"];
+
+    let allGeneratedNames = [];
+
+    function generateBandNames() {
+      const nameType = document.getElementById("name-type").value;
+      const quantity = parseInt(document.getElementById("quantity").value, 10);
+      const genre = document.getElementById("genre").value;
+      let bandNames = "";
+
+      for (let i = 0; i < quantity; i++) {
+        let bandName;
+
+        if (nameType === 'adjective-noun') {
+          const adjective = adjectives[Math.floor(Math.random() * adjectives.length)];
+          const noun = nouns[Math.floor(Math.random() * nouns.length)];
+          bandName = `${adjective} ${noun}`;
+        } else if (nameType === 'two-words') {
+          const word1 = randomWords[Math.floor(Math.random() * randomWords.length)];
+          const word2 = randomWords[Math.floor(Math.random() * randomWords.length)];
+          bandName = `${word1} ${word2}`;
+        } else if (nameType === 'one-word') {
+          bandName = singleWords[Math.floor(Math.random() * singleWords.length)];
+        }
+
+        bandNames += `${bandName}\n`;
+        allGeneratedNames.push(bandName);
+      }
+
+      document.getElementById("band-names").textContent = `Genre: ${genre}\n${bandNames.trim()}`;
+    }
+
+    function loadMoreNames() {
+      const nameType = document.getElementById("name-type").value;
+      const quantity = parseInt(document.getElementById("quantity").value, 10);
+      let additionalNames = "";
+
+      for (let i = 0; i < quantity; i++) {
+        let bandName;
+
+        if (nameType === 'adjective-noun') {
+          const adjective = adjectives[Math.floor(Math.random() * adjectives.length)];
+          const noun = nouns[Math.floor(Math.random() * nouns.length)];
+          bandName = `${adjective} ${noun}`;
+        } else if (nameType === 'two-words') {
+          const word1 = randomWords[Math.floor(Math.random() * randomWords.length)];
+          const word2 = randomWords[Math.floor(Math.random() * randomWords.length)];
+          bandName = `${word1} ${word2}`;
+        } else if (nameType === 'one-word') {
+          bandName = singleWords[Math.floor(Math.random() * singleWords.length)];
+        }
+
+        additionalNames += `${bandName}\n`;
+        allGeneratedNames.push(bandName);
+      }
+
+      document.getElementById("band-names").textContent += `\n${additionalNames.trim()}`;
+    }
+
+    function copyBandNames() {
+      const bandNames = document.getElementById("band-names").textContent;
+      navigator.clipboard.writeText(bandNames).then(() => {
+        alert("Band names copied to clipboard!");
+      });
+    }
+
+    function restartGeneration() {
+      document.getElementById("name-type").value = "adjective-noun";
+      document.getElementById("genre").value = "rock";
+      document.getElementById("quantity").value = "5";
+      document.getElementById("band-names").textContent = "Choose an option and click 'Generate' to create a band name!";
+      allGeneratedNames = [];
+    }
+  </script>
+
+</body>
+</html>
